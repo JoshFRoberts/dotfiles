@@ -101,4 +101,5 @@ alias pest="./vendor/bin/pest"
 
 alias lama='ollama run llama3.1:8b'
 
-alias mountServer='sshfs Server:. Platten/Server && cd ~/Platten/Server && ll'
+alias mountServer='sshfs Server:. ~/Platten/Server && cd ~/Platten/Server && ll'
+alias globalias='nvim ~/dotfiles/zsh/global_aliasrc && source ~/dotfiles/zsh/global_aliasrc'

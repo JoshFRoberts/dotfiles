@@ -10,9 +10,9 @@ RODE="alsa_output.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo"
 
 
 case "${SINK##*\: }" in
-  $BENZ) echo "1:B"
+  $BENZ) echo " 1:  "
   ;;
-  $RODE) echo "2:R"
+  $RODE) echo " 2:  "
   ;;
   *) echo "0:E"
   ;;

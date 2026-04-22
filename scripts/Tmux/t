@@ -1,0 +1,79 @@
+#!/bin/bash
+
+
+FUNCTIONCHOICE=$1
+if [ -z $FUNCTIONCHOICE ]; then
+    tmux new-session -d -s MainWindow -x 190 -y 43 \; \
+        splitw -v -p 10 \; \
+        last-pane
+
+
+elif [ $FUNCTIONCHOICE = ide ]; then
+    PATH1=$2
+    PATH2=$3
+    PATH3=$4
+
+    # Check if Parameters are left empty
+    if [ -z $PATH1 ]; then
+        PATH1=~
+    fi
+    if [ -z $PATH2 ]; then
+        PATH2=$PATH1
+    fi
+    if [ -z $PATH3 ]; then
+        PATH3=$PATH2
+    fi
+
+    tmux new-session -d -s Ide -x 190 -y 43 \; \
+        send-keys 'cd '$PATH1' && clear' C-m \; \
+        splitw -v -p 10 \; \
+        send-keys 'cd '$PATH2' && unten' C-m \; \
+        last-pane \; \
+        splitw -h -l 80 \; \
+        send-keys 'cd '$PATH3'' C-m \; \
+        selectp -L
+
+elif [ $FUNCTIONCHOICE = ssh ]; then
+    SERVER=$2
+
+    # Check if Parameter is left empty
+    if [ -z $SERVER ]; then
+        SERVER=Server
+    fi
+
+    tmux new-session -d -s Ballsession -x 190 43 \; \
+        splitw -v -p 10 \; \
+        send-keys 'unten' C-m \; \
+        last-pane \; \
+        splitw -h -l 80 \; \
+        send-keys 'ssh '$SERVER'' C-m \; \
+        selectp -U
+
+    elif [ $FUNCTIONCHOICE = s ]; then
+        PATH1=/home/joshuafroberts/.local/bin/
+        PATH2=$3
+        PATH3=$4
+
+    # Check if Parameters are left empty
+    if [ -z $PATH1 ]; then
+        PATH1=~
+    fi
+    if [ -z $PATH2 ]; then
+        PATH2=$PATH1
+    fi
+    if [ -z $PATH3 ]; then
+        PATH3=$PATH2
+    fi
+
+    tmux new-session -d -s Ide -x 190 -y 43 \; \
+        send-keys 'cd '$PATH1' && clear' C-m \; \
+        splitw -v -p 10 \; \
+        send-keys 'cd '$PATH2' && unten' C-m \; \
+        last-pane \; \
+        splitw -h -l 80 \; \
+        send-keys 'cd '$PATH3'' C-m \; \
+        selectp -L
+fi
+
+tmux attach-session -d
+

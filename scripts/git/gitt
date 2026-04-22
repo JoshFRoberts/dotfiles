@@ -1,0 +1,8 @@
+#!/bin/bash
+
+COMMAND=$1
+MESSAGE="$2"
+
+if [[ $COMMAND == "commit" ]]; then
+    git add . && git commit -m "$MESSAGE" && git push
+fi

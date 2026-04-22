@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sudo -u www-data sh -c 'git pull && COMPOSER_HOME=/var/www composer install --no-dev && php8.2 artisan migrate && php8.2 artisan config:cache && php8.2 artisan route:cache && php8.2 artisan queue:restart'
+
+

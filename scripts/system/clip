@@ -1,0 +1,10 @@
+#!/bin/sh
+
+case "$1" in
+    help) echo "Übergeben sie einen Pfad zu einer Datei"
+        echo "Der Inhalt wird in der Systemzwischenablage Gespeichert."
+    ;;
+    *) cat $1 | xclip -selection c
+    ;;
+esac
+

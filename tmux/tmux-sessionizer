@@ -1,0 +1,67 @@
+#!/usr/bin/sh
+
+HOMEDIR=~
+which fd > /dev/null
+if [ 0 = $? ]; then
+  if [ -n "$1" ]; then
+    SEL_DIR=$(fd "$1" ~ --type directory | fzf) # if fd-find is installed
+  else
+    SEL_DIR=$(fd . ~ --type directory | fzf) # if fd-find is installed
+  fi
+else
+  if [ -n "$1" ]; then
+      SEL_DIR=$(find ~ -not -path "*/.*" -type d -name "$1" -print 2>/dev/null | fzf)
+  else
+    SEL_DIR=$(find ~ -not -path "*/.*" -type d -print 2>/dev/null | fzf)
+  fi
+fi
+
+if [ "$?" -ne 0 ]; then
+  exit
+fi
+
+SEL_NAME=$(basename "$SEL_DIR")
+
+new_session_name(){
+  RET=0
+  while [ $RET -eq 0 ]; do
+    clear
+    read -p "New session name: " SEL_NAME
+    if [ -z "$SEL_NAME" ]; then
+      clear
+    else
+      RET=1
+    fi
+  done
+}
+
+if [ -z "$SEL_DIR" ] || [ -n "$SEL_DIR" ] && [ "$SEL_DIR" = "$HOMEDIR" ]; then
+  new_session_name
+else
+  RET=0
+  while [ $RET -eq 0 ]; do
+    clear
+    read -r -p "Choose a different session-name? [y/n] " USR_CHOICE
+    echo $USR_CHOICE
+    if [ "$USR_CHOICE" = "y" ]; then
+      clear
+      new_session_name
+      RET=1
+      elif [ "$USR_CHOICE" = "n" ] || [ "$USR_CHOICE" = "" ]; then
+      clear
+      RET=1
+    else
+      clear
+    fi
+  done
+fi
+
+SEL_NAME=$(echo "$SEL_NAME" | tr "[:lower:]" "[:upper:]")
+
+tmux new-session -d -s "$SEL_NAME" -c "$SEL_DIR"
+if [ -z "$TMUX" ]; then
+  tmux attach -t "$SEL_NAME"
+else
+  tmux switch-client -t "$SEL_NAME"
+fi
+

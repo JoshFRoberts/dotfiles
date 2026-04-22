@@ -1,0 +1,18 @@
+#!/bin/bash
+
+NEWSCRIPTPATH=$1
+
+cd ~/.local/bin
+
+cp blueprint ${NEWSCRIPTPATH}
+
+nvim ${NEWSCRIPTPATH}
+
+source ~/.zshrc
+
+clear
+
+cd ~/.local/bin
+
+eza --icons --tree --color=auto
+

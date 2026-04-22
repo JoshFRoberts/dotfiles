@@ -1,0 +1,20 @@
+#!/bin/bash
+
+USERNAME=$(whoami)
+
+echo "Sie werden aufgerufen, ihren AD-Usernamen einzugeben. Dies wird Benötigt, um den ordner auf dc-002 zu finden."
+read -p "Geben sie ihren AD-Usernamen an! " ADUSER
+mkdir -p /home/${USERNAME}/Bootdinge/
+
+echo "Sie werden aufgerufen, sich für sudo zu Autorisieren. Dies geschieht, um dc-002 mounten zu können"
+echo "Anschließend müssen sie ihr AD-Passwort eingeben, um sihc auf dc-002 autorisieren zu können."
+sudo mount -t cifs -o user=$ADUSER,domain=dc-002.intern.securepoint.de //dc-002/Ordner/Signaturen/$ADUSER /mnt
+
+echo "Es wird die Signaturdatei von dc-002 auf ihr System in den ~/Bootdinge Ordner kopiert. Von dort wird die Datei in Thunderbird eingelesen."
+sleep 0.5
+sudo cp /mnt/Signatur.html /home/${USERNAME}/Bootdinge/Signatur.html
+sleep 0.5
+sudo umount /mnt
+
+sudo chown ${USERNAME}:${USERNAME} /home/${USERNAME}/Bootdinge/Signatur.html
+echo 'Signatur in ~/Bootdinge/Signatur.html Aktualisiert.'$'\nThunderbird übernimmt ab hier Automatisch.'

@@ -1,0 +1,104 @@
+#! /bin/zsh
+#--------------------------------------------------------------------------------------------
+#ALIAS
+#--------------------------------------------------------------------------------------------
+
+#Alias for Listings
+
+alias lsb="lsblk -a"
+alias lsu="lsusb"
+
+alias ls="exa --header --icons --group"
+alias la="exa --header --icons --all --group"
+alias ll="exa --long --header --icons --group"
+alias lla="exa --long --header --icons --all --group"
+alias lt="exa --icons --tree --color=auto"
+alias lta="exa --long --header --icons --all --group --tree --color=auto"
+
+#Alias for typos
+
+#Alias for vim-like quitting
+
+alias :q="exit"
+
+#Alias for system update
+
+alias inst="sudo apt install"
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade -y"
+alias up="sudo apt update && upgrade"
+
+#Alias for exitting with quit
+
+alias quit="exit"
+alias q="exit"
+
+#Alias fast command for pinging a website
+
+alias pingg="ping factorio.fyfe.today"
+
+#Alias for new article -> LaTeX related; new latex document with article template is created
+
+alias newtex="cp /home/${USER}/JRConfigs/.config/latex/template.tex"
+
+#Shortening to long and common commands
+
+alias mk="mkdir -pv"
+alias wtr="curl wttr.in/lüneburg"
+
+#Alias for nano n' shit
+
+alias v="nvim"
+alias rc="nvim ~/.zshrc && source ~/.zshrc && clear && echo .zshrc-Bearbeitung erledigt, Sir! && sleep 1 && clear"
+alias aliasrc="nvim ~/.local/bin/zsh/aliasrc && source ~/.local/bin/zsh/aliasrc && clear"
+alias fb="cp ~/Notizen.md feedback_69.md && v feedback_69.md && rm -f feedback_69.md && clear"
+alias badje="touch"
+alias meme="xdg-open https://www.imgflip.com/memegenerator 2>&1 > /dev/null"
+alias buch1="open /home/joshuafroberts/Dokumente/Berufsschule/1_LJ/Buch.pdf 2>&1 > /dev/null"
+alias buch2="open /home/joshuafroberts/Dokumente/Berufsschule/2_LJ/Buch.pdf 2>&1 > /dev/null"
+alias buch3="open /home/joshuafroberts/Dokumente/Berufsschule/3_LJ/Buch.pdf 2>&1 > /dev/null"
+alias taar="tar -czvf"
+alias untar="tar --extract -f"
+
+# Alias for tmux
+
+alias s="z ~/.local/bin/ && clear && lt"
+alias cura="nohup Cura 2>&1 > /dev/null && clear"
+
+#--------------------------------------------------------------------------------------------
+#Alias für Promts
+#--------------------------------------------------------------------------------------------
+
+alias stanni="clear && source ~/.zshrc && echo Erledigt! && sleep 1 && clear"
+alias fliegen="clear && export PROMPT='%B%F{#800000}[%f%F{#69C0CC}Ich bin%f%F{#069420} ein Flugzeug%f%F{#B0B0B0} ✈ %f%F{#2088B1}%f%F{#2088B1}  %f%F{#800000}]%f%b %B[%F{#33d17a}%~%f%b%B%F{255}]%f%b %B%F{#E9AD0C}${vcs_info_msg_0_}%b%f% '$'\n%B%F{#D7B0B0}[>] %f%b'"
+alias c0ck="clear && export PROMPT='%B%F{#FF0000}C%f%F{#FF8200}0%f%F{#FFFF00}c%f%F{#82FF00}k%f%F{#00FF00}m%f%F{#00FF82}e%f%F{#00FFFF}1%f%F{#0082FF}5%f%F{#0000FF}t%f%F{#8200FF}3%f%F{#AA00AA}r%f%b %B%F{#D7B0B0}[%~]%f%b %B%F%f%b%B%b%B${ERRORCOL}'$'[>] %f%b'"
+# alias sip="clear && export PROMPT='%B%F{#AA0000}[%f%F{#FF0000}St%f%F{#FFAA00}ay%f%F{#FFFF00} Hy%f%F{#AAFF00}d%f%F{#00FF00}r%f%F{#00FFAA}a%f%F{#00FFFF}t%f%F{#00AAFF}e%f%F{#0000FF}d%f%F{#AA00AA}]%f%b %B[%F{#33d17a}%~%f%b%B%F{255}]%f%b %B%F%f%b%B%b%B${ERRORCOL}'$'[>] %f%b'"
+alias lom="clear && export PROMPT='%B%F{255}Du bist %f%F{#CC00FF}%n%f%F{255}. Ich bin n normaler %f%F{#33C7DE}%m%f%F{255}.%b %B%F{#FFD800}[%~]%f%b'$'\n%B%F{#00FF00}[>]%f%b '"
+alias unten="clear && export PROMPT='%B%F{#FF0000}U%f%F{#FF8200}n%f%F{#FFFF00}t%f%F{#82FF00}e%f%F{#00FF00}n%f%F{#00FF82} T%f%F{#00FFFF}e%f%F{#0082FF}x%f%F{#0000FF}t%f%F{#8200FF} :%f%F{#AA00AA})%f%b %B%F{#D7B0B0}[%~]%f%b %B%F%f%b%B%b%B${ERRORCOL}'$'[>] %f%b'"
+alias harry="clear && export PROMPT='%B╭%b%F{#7daea3}  %f %F{#7daea3}%~%f  ${vcs_info_msg_0_}'$'\n''%B╰%b${ERRORCOL}%B%f%b '"
+
+#--------------------------------------------------------------------------------------------
+#SSH-Verbindungen
+#--------------------------------------------------------------------------------------------
+
+#UTM-Verbindung
+alias bbs="ssh Joshua@192.168.1.7"
+
+#Alias for funny doas
+
+alias please="sudo"
+alias fucking="sudo"
+alias diggi="sudo"
+
+
+#Alias for befehle to be useful
+
+alias rsync="rsync -rtvzP"
+alias ptf="find . | grep -s"
+
+# Alias für PHP, ARTISAN, LARAVEL, ETC.
+alias pest="./vendor/bin/pest"
+
+alias lama='ollama run llama3.1:8b'
+
+alias mountServer='sshfs Server:. Platten/Server && cd ~/Platten/Server && ll'

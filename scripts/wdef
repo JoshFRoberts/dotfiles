@@ -1,0 +1,18 @@
+#!/bin/bash
+
+word=${1:-$(xclip -o -selection primary)}
+url="https://api.dictionaryapi.dev/api/v2/entries/en_US"
+query=$(curl -s "$url/$word")
+[ -z "$query" ] && notify-send -h string:bgcolor:#313131 -t 3000 "Invalid word." && exit
+
+def=$(echo "$query" | jq -r '.[0].meanings[] | "\(.partOfSpeech): \(.definitions[0].definition)\n"')
+
+
+notify-send -t 10000 "$word -" "$def"
+
+
+exit 0
+
+#HOWSOUNDS
+
+# xdg-open $(echo "$query" | jq -r ".[0].phonetics.[0].audio")

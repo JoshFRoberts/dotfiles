@@ -1,0 +1,46 @@
+#! /bin/bash
+
+PORT=3000
+ENV="dev"
+
+#------------------------------------------------------------------------------
+
+usage() {
+    echo "Usage: wk [-e <environment>] [-p <port>]" 1>&2;
+    exit 1;
+}
+
+while getopts ":e:p:" o; do
+    case "${o}" in
+        e)
+            e=${OPTARG}
+            (( e == "test" )) && ENV=$e || [[ -z "${e}" ]] || usage
+            ;;
+        p)
+            p=${OPTARG}
+            [[ $p -ge 0 ]] && PORT=$p || [[ -z "${p}" ]] || usage
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+#------------------------------------------------------------------------------
+
+cd /var/www/example-app
+
+if [[ $ENV == "dev" ]]; then
+    yarn run dev
+
+elif [[ $ENV == "test" ]]; then
+    php artisan serve --env=testing --port=$PORT
+
+else
+    ENV=$1
+    echo "wrong argument given: ${ENV}"
+    exit 1
+fi
+
+exit 0

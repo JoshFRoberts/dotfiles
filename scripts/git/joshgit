@@ -1,0 +1,6 @@
+#!/bin/sh
+
+COMMAND=$1
+REPO=$2
+
+git ${COMMAND} git@github.com:JoshFRoberts/${REPO}.git

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+OPENAI_API_KEY=$(cat /home/$(whoami)/.gpt_key)
+
+REQUEST=${1}
+
+RESPONSE=$(curl "https://api.openai.com/v1/chat/completions" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_API_KEY" \
+    -d "{
+        \"model\": \"gpt-4o-mini\",
+        \"messages\": [
+            {
+                \"role\": \"system\",
+                \"content\": \"You are a helpful assistant giving short responses.\"
+            },
+            {
+                \"role\": \"user\",
+                \"content\": \"${REQUEST}\"
+            }
+        ]
+    }" 2> /dev/null)
+
+MSG=$(echo "$RESPONSE" | jq -r ".choices[0].message.content")
+
+echo ${MSG}

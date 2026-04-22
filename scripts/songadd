@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python3 ~/Projekte/spotify-api-requester/requester.py

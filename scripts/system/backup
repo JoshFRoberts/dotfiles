@@ -1,0 +1,47 @@
+#!/bin/sh
+
+USERNAME=$(whoami)
+HOMEDIR="/home/${USERNAME}"
+CONFIGDIR="${HOMEDIR}/.config/"
+DATADIR="/home/${USERNAME}/Nextcloud/Backup/Data/"
+LOGDIR="/home/${USERNAME}/Nextcloud/Backup/Logs/"
+DATE=$(date +%Y-%m-%d_%T)
+
+get_datafiles() {
+    echo "$(ls -1U "$DATADIR" | wc -l)"
+}
+get_logfiles() {
+    echo "$(ls -1U "$LOGDIR" | wc -l)"
+}
+
+send_notification() {
+    XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Backup "$*"
+}
+
+mkdir -p "$DATADIR"
+mkdir -p "$LOGDIR"
+
+tar -capvf /home/"$USERNAME"/Nextcloud/Backup/Data/Datenbackup-"$DATE"_"$USERNAME".tar.gz \
+    --exclude='*.iso' --exclude='*.tar.gz' --exclude='*.tar' --exclude='*.gz' \
+    --exclude='*.db' --exclude='*.vdi' --exclude='*.vbox' --exclude='*.vbox-prev' --exclude='snap/' \
+    --exclude="${CONFIGDIR}BraveSoftware/*" --exclude="${CONFIGDIR}Code/*" --exclude="${CONFIGDIR}Element/Cache/*" \
+    "$HOMEDIR"/.bashrc "$HOMEDIR"/.config "$HOMEDIR"/.local/share/password \
+    "$HOMEDIR"/.twinkle "$HOMEDIR"/.thunderbird "$HOMEDIR"/.ssh \
+    "$HOMEDIR"/Projekte \
+    "$HOMEDIR"/.zshrc "$HOMEDIR"/.cert "$HOMEDIR"/.gnupg "$HOMEDIR"/.profile "$HOMEDIR"/.wget-hsts \
+    "$HOMEDIR"/Dokumente "$HOMEDIR"/Bilder "$HOMEDIR"/Vorlagen \
+    "$HOMEDIR"/Documents "$HOMEDIR"/Desktop "$HOMEDIR"/Pictures "$HOMEDIR"/dev \
+    >"$HOMEDIR"/Nextcloud/Backup/Logs/output-"$DATE".log 2>&1
+
+while [ "$(get_datafiles)" -gt 2 ]; do
+    DATAFILE=$(ls -t "$DATADIR" | tail -1)
+    rm -f "$DATADIR$DATAFILE"
+done
+
+while [ "$(get_logfiles)" -gt 2 ]; do
+    LOGFILE=$(ls -t "$LOGDIR" | tail -1)
+    rm -f "$LOGDIR$LOGFILE"
+done
+
+send_notification "Finished"
+

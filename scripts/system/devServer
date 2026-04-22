@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /var/www/example-app
+
+yarn run dev

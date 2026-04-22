@@ -1,0 +1,42 @@
+#!/bin/bash
+# Autor: Joshua R
+# Öffnen des Feinschmeckerei-Speiseplans
+# Version 2.0
+# Date 16.01.23
+
+WOCHENTAG=$(date +%u)
+# WOCHENTAG=6
+case $WOCHENTAG in
+	1)
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/Tageskarte-Montag.pdf"
+		exit
+		;;
+	2)
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/PDF/Tageskarten/Tageskarte-Dienstag.pdf"
+		exit
+		;;
+	3)
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/Tageskarte-Mittwoch.pdf"
+		exit
+		;;
+	4)
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/Tageskarte-Donnerstag.pdf"
+		exit
+		;;
+	5)
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/Tageskarte-Freitag.pdf"
+		exit
+		;;
+	6)
+		figlet 'Es ist Wochenende... du Doof!' | lolcat
+		sleep 3
+		cowsay 'Na gut, wenns sein muss... Gib mir ne Sekunde!' | lolcat
+		sleep 3
+		XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send Nom "https://public.od.cm4allbusiness.de/.cm4all/uro/W4BOD0AVBRI3/Tageskarte-Samstag.pdf"
+		exit
+		;;
+	*)
+		figlet 'Bruder es ist Wochenende...' | lolcat
+		exit
+		;;
+esac

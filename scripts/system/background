@@ -1,0 +1,21 @@
+#!/bin/bash
+# Written by Josh
+# Written in Vim
+
+
+#Put Funny Backgrounds Here
+# Naming: {{ 0-RANGE }}.jpg
+PWD=/home/joshuafroberts/Bilder/Hintergründe/Steiner/
+number=$RANDOM
+
+# Number Of Pictures inside the PWD Directory
+RANGE=27
+
+number=$(($number % $RANGE))
+number=$(($number + 1))
+
+NEWPICTURE="${PWD}${number}.jpg"
+BACKGROUND=/home/joshuafroberts/Bilder/Hintergründe/background.jpg
+
+cp $NEWPICTURE $BACKGROUND
+

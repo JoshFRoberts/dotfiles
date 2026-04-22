@@ -7,3 +7,4 @@ ln -s ${DIR}/tmux ~/.config/tmux
 ln -s ${DIR}/neovim ~/.config/nvim
 
 echo "source ${DIR}/zsh/global_aliasrc" >> ~/.zshrc
+echo 'export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"' >> ~/.zshrc

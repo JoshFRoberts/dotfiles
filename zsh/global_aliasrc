@@ -8,18 +8,28 @@
 alias lsb="lsblk -a"
 alias lsu="lsusb"
 
-alias ls="exa --header --icons --group"
-alias la="exa --header --icons --all --group"
-alias ll="exa --long --header --icons --group"
-alias lla="exa --long --header --icons --all --group"
-alias lt="exa --icons --tree --color=auto"
-alias lta="exa --long --header --icons --all --group --tree --color=auto"
+alias s="z ~/.local/bin && clear && lt"
 
-#Alias for typos
+alias rc="nvim ~/.zshrc && source ~/.zshrc && clear"
+alias globalias='nvim ~/dotfiles/zsh/global_aliasrc && source ~/dotfiles/zsh/global_aliasrc'
 
-#Alias for vim-like quitting
+# ls aliases
+alias ls='eza --group-directories-first'
+alias la='ls --all'
+alias ll='ls --long'
+alias lla='ll --all'
+alias lt='ls --tree'
+alias lta='lt --all'
 
-alias :q="exit"
+alias inst="sudo dnf install"
+alias search="sudo dnf search"
+
+alias blk="lsblk | bat -l conf -p"
+
+alias cd="z"
+alias sw="z sway && clear && lt"
+
+alias open="xdg-open"
 
 #Alias for system update
 
@@ -30,8 +40,10 @@ alias up="sudo apt update && upgrade"
 
 #Alias for exitting with quit
 
-alias quit="exit"
+alias v="nvim"
 alias q="exit"
+alias :q="exit"
+alias quit="exit"
 
 #Alias fast command for pinging a website
 
@@ -44,26 +56,13 @@ alias newtex="cp /home/${USER}/JRConfigs/.config/latex/template.tex"
 #Shortening to long and common commands
 
 alias mk="mkdir -pv"
-alias wtr="curl wttr.in/lüneburg"
+alias rsync="rsync -rtvzP"
+alias ptf="find . | grep -s"
 
-#Alias for nano n' shit
+#Alias for tar
 
-alias v="nvim"
-alias rc="nvim ~/.zshrc && source ~/.zshrc && clear && echo .zshrc-Bearbeitung erledigt, Sir! && sleep 1 && clear"
-alias aliasrc="nvim ~/.local/bin/zsh/aliasrc && source ~/.local/bin/zsh/aliasrc && clear"
-alias fb="cp ~/Notizen.md feedback_69.md && v feedback_69.md && rm -f feedback_69.md && clear"
-alias badje="touch"
-alias meme="xdg-open https://www.imgflip.com/memegenerator 2>&1 > /dev/null"
-alias buch1="open /home/joshuafroberts/Dokumente/Berufsschule/1_LJ/Buch.pdf 2>&1 > /dev/null"
-alias buch2="open /home/joshuafroberts/Dokumente/Berufsschule/2_LJ/Buch.pdf 2>&1 > /dev/null"
-alias buch3="open /home/joshuafroberts/Dokumente/Berufsschule/3_LJ/Buch.pdf 2>&1 > /dev/null"
 alias taar="tar -czvf"
 alias untar="tar --extract -f"
-
-# Alias for tmux
-
-alias s="z ~/.local/bin/ && clear && lt"
-alias cura="nohup Cura 2>&1 > /dev/null && clear"
 
 #--------------------------------------------------------------------------------------------
 #Alias für Promts
@@ -80,9 +79,7 @@ alias harry="clear && export PROMPT='%B╭%b%F{#7daea3}  %f %F{#7daea3}%~%f  
 #--------------------------------------------------------------------------------------------
 #SSH-Verbindungen
 #--------------------------------------------------------------------------------------------
-
-#UTM-Verbindung
-alias bbs="ssh Joshua@192.168.1.7"
+alias mountServer='sshfs Server:. ~/Platten/Server && cd ~/Platten/Server && ll'
 
 #Alias for funny doas
 
@@ -90,16 +87,8 @@ alias please="sudo"
 alias fucking="sudo"
 alias diggi="sudo"
 
-
-#Alias for befehle to be useful
-
-alias rsync="rsync -rtvzP"
-alias ptf="find . | grep -s"
-
 # Alias für PHP, ARTISAN, LARAVEL, ETC.
 alias pest="./vendor/bin/pest"
 
 alias lama='ollama run llama3.1:8b'
 
-alias mountServer='sshfs Server:. ~/Platten/Server && cd ~/Platten/Server && ll'
-alias globalias='nvim ~/dotfiles/zsh/global_aliasrc && source ~/dotfiles/zsh/global_aliasrc'

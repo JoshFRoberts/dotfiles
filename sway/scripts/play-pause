@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+if [[ $(playerctl --player=spotify status) == 'Playing' ]]; then
+  playerctl --player=spotify play-pause
+elif [[ $(playerctl --player=brave status) == 'Playing' ]]; then
+  playerctl --player=brave play-pause
+else
+  playerctl --player=spotify play-pause
+fi
+
+exit 0

@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+command='python3 ~/Projekte/spotify-api-requester/playlist-picker.py'
+
+
+if [[ $1 == 'refresh' ]]; then
+  command="$command --refresh"
+fi
+
+
+foot --app-id=spotify-picker -e bash -c "${command}"

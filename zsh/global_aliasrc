@@ -21,8 +21,6 @@ alias lla='ll --all'
 alias lt='ls --tree'
 alias lta='lt --all'
 
-alias inst="sudo dnf install"
-alias search="sudo dnf search"
 
 alias blk="lsblk | bat -l conf -p"
 
@@ -33,10 +31,8 @@ alias open="xdg-open"
 
 #Alias for system update
 
-alias inst="sudo apt install"
-alias update="sudo apt update"
-alias upgrade="sudo apt upgrade -y"
-alias up="sudo apt update && upgrade"
+alias inst="sudo dnf install"
+alias search="sudo dnf search"
 
 #Alias for exitting with quit
 
